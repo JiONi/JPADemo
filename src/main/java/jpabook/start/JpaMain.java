@@ -51,4 +51,9 @@ public class JpaMain {
         em.remove(member);
     }
 
+    private static void logic2(EntityManager em) {
+        Board board = new Board();
+        em.persist(board);
+        System.out.println("Board.id = " + board.getId2()); // IDENTITY 전략으로 키 생성 시 persist로 데이터 생성 후 id 데이터 조회 가능
+    }
 }

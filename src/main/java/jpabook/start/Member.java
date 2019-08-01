@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="MEMBER")
+@Table(name="MEMBER", uniqueConstraints = {@UniqueConstraint(name = "NAME_AGE_UNIQUE", columnNames = {"NAME", "AGE"})}) //유니크 제약조건 추
 public class Member {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //IDENTITY 전략으로 기본 키 자동생성
     @Column(name = "ID")
     private String id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false, length = 10)   //회원 이름은 필수로 입력, 10자를 초과하면 안 됨(제약조건)
     private String username;
 
     //매핑 정보가 없는 필드

@@ -16,13 +16,24 @@ import javax.persistence.*;
         pkColumnValue = "BOARD_SEQ", allocationSize = 1  //시퀀스 컬럼명, 시퀀스 한 번 호출에 증가하는 수
 )*/
 public class Board {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "BOARD_ID")
+    private Long id;
+
+    private String title;
+
+    @OneToOne(mappedBy = "board")
+    private BoardDetail boardDetail;
+
     /*@Id           IDENTITY 전략으로 기본 키 자동생성
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id1;*/
 
-    @Id // SEQUENCE 전략으로 기본 키 자동생성
+    /*@Id // SEQUENCE 전략으로 기본 키 자동생성
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                    generator = "BOARD_SEQ_GENERATOR")
+                    generator = "BOARD_SEQ_GENERATOR")*/
     private Long id2;
 
     /*@Id

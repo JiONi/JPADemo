@@ -38,4 +38,13 @@ public class Team {
     public List<Member> getMembers(){
         return members;
     }
+
+    public void addMember(Member member){
+        this.members.add(member);
+
+        //무한루프에 빠지지 않도록 체크
+        if(member.getTeam() != this){
+            member.setTeam(this);
+        }
+    }
 }

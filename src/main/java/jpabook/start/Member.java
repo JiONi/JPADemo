@@ -31,6 +31,15 @@ public class Member {
     @JoinTable(name = "MEMBER_PRODUCT", joinColumns = @JoinColumn(name = "MEMBER_ID"), inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
     private List<Product> products = new ArrayList<Product>();
 
+    @Embedded Period workPeriod;    //근무 기간
+    @Embedded Address homeAddress;  //집 주소
+
+    @Embedded
+    @AttributeOverrides({@AttributeOverride(name="city", column = @Column(name = "COMPANY_CITY")),
+                        @AttributeOverride(name="street", column = @Column(name = "COMPANY_STREET")),
+                        @AttributeOverride(name="zipcode", column = @Column(name = "COMPANY_ZIPCODE"))})
+    Address companyAddress;
+
     //매핑 정보가 없는 필드
     private Integer age;
 
